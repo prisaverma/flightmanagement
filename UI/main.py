@@ -1,17 +1,14 @@
-
 import sys
 import menuactions
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QMenu, QAction
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QAction, QMdiArea
 
 class Window(QMainWindow):
-
     def __init__(self, parent=None):
-        super().__init__(parent)
+        super(QMainWindow, self).__init__(parent)
+        self.mdi = QMdiArea()
         self.setWindowTitle("Flight Management System")
-        self.centralWidget = QLabel("Welcome to Flight Management System ....")
-        self.centralWidget.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-        self.setCentralWidget(self.centralWidget)
+        self.setCentralWidget(self.mdi)
         self._createMenuItems()
         self._createActionsForMenu()
         self._attachActionsToMenu()
@@ -25,9 +22,9 @@ class Window(QMainWindow):
 
     def _createActionsForMenu(self):
         self.addFlightAction = QAction("&Add", self)
-        self.addFlightAction.triggered.connect(lambda: menuactions.addFlightClicked())
+        self.addFlightAction.triggered.connect(lambda: menuactions.addFlightClicked(self))
         self.searchFlightAction = QAction("&Search", self)
-        self.searchFlightAction.triggered.connect(lambda: menuactions.searchFlightClicked())
+        self.searchFlightAction.triggered.connect(lambda: menuactions.searchFlightClicked(self))
 
     def _attachActionsToMenu(self):
         self.flightsMenu.addAction(self.addFlightAction)
