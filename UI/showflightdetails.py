@@ -5,7 +5,7 @@ def dialog():
     mbox = QMessageBox()
 
     mbox.setText("Your allegiance has been noted")
-    mbox.setDetailedText("ADD YOUR FLIGHT")
+    mbox.setDetailedText("SHOW FLIGHT DETAILS ")
     mbox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             
     mbox.exec_()
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     w.setWindowTitle("flightmanagement")
     
     label = QLabel(w)
-    label.setText("add flight")
+    label.setText("show flights")
     label.move(130,130)
     label.show()
 
